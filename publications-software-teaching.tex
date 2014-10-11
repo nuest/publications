@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage{ngerman}
+\usepackage[backend=bibtex, maxbibnames=99]{biblatex}
+\usepackage{textcomp} % http://tex.stackexchange.com/questions/165115/getting-not-defining-perthousnad-and-not-defining-micro-when-compiling-beamer
+\usepackage{gensymb}
+\usepackage{hyperref}
+
+\addbibresource{danielnuest.bib}
+
+\defbibnote{conf}{conferences, meetings, presentations, posters}
+\defbibnote{journal}{journals, proceedings}
+
+\title{Research, Development, and Teaching References\vspace{-2ex} %
+}
+\author{Daniel N\"ust}
+
+% http://de.comp.text.tex.narkive.com/LjGI9H6N/biblatex-bestimmten-autor-in-literaturverzeichnis-hervorheben
+% Namessignaturen erstellen; Argumente:
+% 1=Makro zum speichern der Signatur
+% 2=Nachname
+% 3=Vorname
+% 4=Präfix
+% 5=Suffix
+\newcommand*{\mknamesignature}[5]{\def#1{#2|#3|#4|#5}}
+
+% Prüfsignatur für den hervorzuhebenden Namen erstellen
+% und in \highlightname speichern
+\mknamesignature{\highlightname}{N{\"u}st}{Daniel}{}{}
+
+% NameFormat je nach style anpassen, siehe http://www.golatex.de/biblatex-style-numeric-bestimmten-autoren-hervorheben-t7802.html
+% style=numeric > "default"
+% style=authoryear > "sortname"
+\DeclareNameFormat{default}{%
+% Änderungen auf Gruppe = aktuellen Namen beschränken
+\begingroup
+% Prüfsignatur für aktuelle Namen erstellen und in
+% \currentsignature speichern
+\mknamesignature{\currentsignature}{#1}{#3}{#5}{#7}%
+% \currentsignature mit \highlightname vergleichen
+\ifdefequal{\highlightname}{\currentsignature}
+{\let\mkbibnamefirst=\textbf
+\let\mkbibnamelast=\textbf
+\let\mkbibnameprefix=\textbf
+\let\mkbibnameaffix=\textbf}
+{}%
+\ifnum\value{listcount}=1\relax
+\usebibmacro{name:last-first}{#1}{#3}{#5}{#7}%
+\ifblank{#3#5}
+{}
+{\usebibmacro{name:revsdelim}}%
+\else
+\usebibmacro{name:first-last}{#1}{#3}{#5}{#7}%
+\fi
+% Ende der Gruppe
+\endgroup
+\usebibmacro{name:andothers}}
+
+
+\begin{document}
+
+\maketitle
+
+Journal articles, conference proceedings, talks and presentation abstracts.
+
+\nocite{*}
+
+%\bibliography %[type=article]
+
+%\bibliographystyle{natdin}
+%\printbibliography[prenote=conf, type=inproceedings]
+%\printbibliography[prenote=journal, type=article]
+
+\printbibliography
+
+
+\section*{Software projects (excerpt)}
+
+Daniel (\href{https://github.com/nuest/}{@nuest}) is contributing developer in the following software projects.
+
+\begin{itemize}
+	\item sos4R, \url{https://github.com/52North/sos4R}
+	\item 52\degree North WPS, \url{https://github.com/52North/WPS}
+	\item 52\degree North Open Sensor Search, \url{https://github.com/52North/OpenSensorSearch}
+	\item wps-js, \url{https://github.com/52North/wps-js}
+	\item SOS.js, \url{https://github.com/52North/sos-js}
+\end{itemize}
+
+
+\section*{Teaching}
+
+\begin{itemize}
+	\item GEOSTAT autumn school, Belgrade, 18-24 September 2011 -- spatial data in R and development of R with Eclipse. \url{ http://geostat-course.org/R_OSGeo_in_Education_Belgrade}
+	\item IC\_Cartotechnology, Barcelona, 2013 -- lecturer for web-based cartography and open source software. \url{http://www.icc.cat/ic_cartotechnology/}
+	\item Geosoftware 2, Institute for Geoinformatics, summer semester 2012/13 -- supporting lecturer for software development fo \enquote{Visualization of Air Quality Data}. \url{http://airqualityegg.net/geosoft/}
+\end{itemize}
+
+\end{document}
