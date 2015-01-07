@@ -8,3 +8,12 @@ publications-software-teaching.out
 publications-software-teaching.pdf
 publications-software-teaching.run.xml
 publications-software-teaching.synctex.gz
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*-blx.bib
+*.run.xml
+*.gz
+*.out

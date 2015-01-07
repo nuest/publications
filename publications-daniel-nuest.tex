@@ -1,0 +1,120 @@
+\documentclass{article}
+
+\usepackage{ngerman}
+\usepackage[backend=bibtex, maxbibnames=99,sorting=ynt,defernumbers]{biblatex}
+\usepackage{textcomp} % http://tex.stackexchange.com/questions/165115/getting-not-defining-perthousnad-and-not-defining-micro-when-compiling-beamer
+\usepackage{gensymb}
+\usepackage{hyperref}
+
+\addbibresource{danielnuest.bib}
+
+\defbibnote{conf}{conferences, meetings, presentations, posters}
+\defbibnote{journal}{journals, proceedings}
+
+\title{Publications\vspace{-2ex} %
+}
+\author{Daniel N\"ust}
+
+% http://de.comp.text.tex.narkive.com/LjGI9H6N/biblatex-bestimmten-autor-in-literaturverzeichnis-hervorheben
+% Namessignaturen erstellen; Argumente:
+% 1=Makro zum speichern der Signatur
+% 2=Nachname
+% 3=Vorname
+% 4=Präfix
+% 5=Suffix
+\newcommand*{\mknamesignature}[5]{\def#1{#2|#3|#4|#5}}
+
+% Prüfsignatur für den hervorzuhebenden Namen erstellen
+% und in \highlightname speichern
+\mknamesignature{\highlightname}{N{\"u}st}{Daniel}{}{}
+
+% NameFormat je nach style anpassen, siehe http://www.golatex.de/biblatex-style-numeric-bestimmten-autoren-hervorheben-t7802.html
+% style=numeric > "default"
+% style=authoryear > "sortname"
+\DeclareNameFormat{default}{%
+% Änderungen auf Gruppe = aktuellen Namen beschränken
+\begingroup
+% Prüfsignatur für aktuelle Namen erstellen und in
+% \currentsignature speichern
+\mknamesignature{\currentsignature}{#1}{#3}{#5}{#7}%
+% \currentsignature mit \highlightname vergleichen
+\ifdefequal{\highlightname}{\currentsignature}
+{\let\mkbibnamefirst=\textbf
+\let\mkbibnamelast=\textbf
+\let\mkbibnameprefix=\textbf
+\let\mkbibnameaffix=\textbf}
+{}%
+\ifnum\value{listcount}=1\relax
+\usebibmacro{name:last-first}{#1}{#3}{#5}{#7}%
+\ifblank{#3#5}
+{}
+{\usebibmacro{name:revsdelim}}%
+\else
+\usebibmacro{name:first-last}{#1}{#3}{#5}{#7}%
+\fi
+% Ende der Gruppe
+\endgroup
+\usebibmacro{name:andothers}}
+
+
+\makeatletter
+\let\defbibfilter@orig\defbibfilter
+\renewrobustcmd*{\defbibfilter}[2]{%
+\csgdef{save@bibfilter#1}{#2}%
+\defbibfilter@orig{#1}{#2}}
+
+\newrobustcmd{\combinetwobibfilter}[3]{%
+ \csedef{temp@bibfilter}{%
+  \csuse{save@bibfilter#2} 
+  or
+  \csuse{save@bibfilter#3} 
+  }%
+  \defbibfilter{#1}{\csuse{temp@bibfilter}}%
+}
+\makeatother
+
+
+\defbibfilter{b}{type=book}
+\defbibfilter{m}{type=manual}
+\combinetwobibfilter{bandm}{b}{m}
+
+\defbibfilter{conferenceabstracts}{
+	( keyword={presentation} or keyword={abstract} )
+	and type=inproceedings
+	%and 
+}
+\defbibfilter{conferencepublications}{
+	not ( keyword={presentation} or keyword={abstract} )
+	and type=inproceedings
+	%and 
+}
+
+\begin{document}
+
+\maketitle
+
+
+\nocite{*}
+
+% for unpublished articles see http://tex.stackexchange.com/questions/60565/separating-two-types-of-articles-from-bibtex-using-printbibliography
+
+%\bibliography %[type=article]
+
+%\bibliographystyle{natdin}
+%\printbibliography[prenote=conf, type=inproceedings]
+%\printbibliography[prenote=journal, type=article]
+
+%Journal articles, conference proceedings, talks and presentation abstracts.
+%\printbibliography
+
+\printbibliography[type=article,title={Journal articles}]
+
+\printbibliography[filter=conferencepublications,title={Conferences (proceedings)}]
+
+\printbibliography[filter=conferenceabstracts,title={Conferences (presentations, extended abstracts)}]
+
+\printbibliography[filter=bandm,title={Technical reports, manuals, tutorials}]
+
+%\printbibliography[nottype=book,nottype=article,title={Miscellaneous}]
+
+\end{document}
