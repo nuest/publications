@@ -5,6 +5,7 @@
 \usepackage{textcomp} % http://tex.stackexchange.com/questions/165115/getting-not-defining-perthousnad-and-not-defining-micro-when-compiling-beamer
 \usepackage{gensymb}
 \usepackage{hyperref}
+\usepackage{dtklogos} % for \BibTeX
 
 \addbibresource{danielnuest.bib}
 
@@ -111,10 +112,14 @@
 
 \printbibliography[filter=conferencepublications,title={Conferences (proceedings)}]
 
-\printbibliography[filter=conferenceabstracts,title={Conferences (presentations, extended abstracts)}]
+\printbibliography[filter=conferenceabstracts,title={Conferences (presentations, abstracts)}]
 
 \printbibliography[filter=bandm,title={Technical reports, manuals, tutorials}]
 
 %\printbibliography[nottype=book,nottype=article,title={Miscellaneous}]
+
+\vfill
+Source \BibTeX \ file for this publication list: \url{https://raw.githubusercontent.com/nuest/publications/master/danielnuest.bib}
+\clearpage
 
 \end{document}
