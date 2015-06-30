@@ -85,8 +85,13 @@
 	%and 
 }
 \defbibfilter{conferencepublications}{
-	not ( keyword={presentation} or keyword={abstract} )
+	not ( keyword={presentation} or keyword={abstract} or keyword={poster} )
 	and type=inproceedings
+	%and 
+}
+\defbibfilter{conferenceposters}{
+	( keyword={poster} )
+	%and type=conference
 	%and 
 }
 
@@ -110,9 +115,11 @@
 
 \printbibliography[type=article,title={Journal articles}]
 
-\printbibliography[filter=conferencepublications,title={Conferences (proceedings)}]
+\printbibliography[filter=conferencepublications,title={Conferences (proceedings, peer-reviewed)}]
 
 \printbibliography[filter=conferenceabstracts,title={Conferences (presentations, abstracts)}]
+
+\printbibliography[filter=conferenceposters,title={Conference (poster presentation)}]
 
 \printbibliography[filter=bandm,title={Technical reports, manuals, tutorials}]
 
