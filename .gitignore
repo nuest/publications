@@ -18,3 +18,4 @@ publications-software-teaching.synctex.gz
 *.gz
 *.out
 publications-daniel-nuest.pdf
+*.Rhistory
