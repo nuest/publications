@@ -767,7 +767,7 @@ use management.},
 
 @Conference{read2014,
   Title                    = {{A suite of R packages for web-enabled modeling and analysis of surface waters}},
-  Author                   = {Read, Jordan Stuart and Winslow, Luke A. and N{\"u}st, Daniel and De Cicco, Laura  and Walker, Jordan I},
+  Author                   = {Read, Jordan Stuart and Winslow, Luke A. and N{\"u}st, Daniel and De Cicco, Laura and Walker, Jordan I},
   Booktitle                = {American Geophysical Union Fall Meeting, San Francisco, California},
   Year                     = {2014},
   Organization             = {American Geophysical Union},
@@ -778,6 +778,31 @@ use management.},
   Owner                    = {Daniel},
   Timestamp                = {2014.10.11},
   Url                      = {http://adsabs.harvard.edu/abs/2014AGUFM.H44D..02R}
+}
+
+@Conference{StaschEGU2016,
+  Title                    = {Sharing environmental models: An Approach using GitHub repositories and Web Processing Services},
+  Author                   = {Stasch, Christoph and N{\"u}st, Daniel and Pross, Benjamin},
+  Booktitle                = {EGU Geophysical Research Abstracts},
+  Year                     = {2016},
+  Organization             = {European Geophysical Union},
+  Pages                    = {6574},
+  Series                   = {Geophysical Research Abstracts},
+  Volume                   = {18},
+
+  Abstract                 = {The GLUES (Global Assessment of Land Use Dynamics, Greenhouse Gas Emissions and Ecosystem Services) project  established  a  spatial  data  infrastructure  for  scientific  geospatial  data  and  metadata  (http://geoportal-glues.ufz.de),  where  different  regional  collaborative  projects  researching  the  impacts  of  climate  and  socio-economic changes on sustainable land management can share their underlying base scenarios and datasets. One goal of the project is to ease the sharing of computational models between institutions and to make them easily executable in Web-based infrastructures. In this work, we present such an approach for sharing computational models relying on GitHub repositories (http://github.com) and Web Processing Services. At  first,  model  providers  upload  their  model  implementations  to  GitHub  repositories  in  order  to  share  them with others. The GitHub platform allows users to submit changes to the model code. The changes can be discussed and reviewed before merging them. However, while GitHub allows sharing and collaborating of model source code,  it  does  not  actually  allow  running  these  models,  which  requires  efforts  to  transfer  the  implementation to  a  model  execution  framework.  We  thus  have  extended  an  existing  implementation  of  the  OGC  Web  Processing Service standard (http://www.opengeospatial.org/standards/wps), the 52°North Web Processing Service (http://52north.org/wps) platform to retrieve all model implementations from a git (http://git-scm.com) repository and add them to the collection of published geoprocesses. The current implementation is restricted to models implemented as R scripts using WPS4R annotations (Hinz et al.) and to Java algorithms using the 52°North WPS Java API. The models hence become executable through a standardized Web API by multiple clients such as desktop or browser GIS and modelling frameworks. If the model code is changed on the GitHub platform, the changes are retrieved by the service and the processes will be updated accordingly. The admin tool of the 52°North WPS was extended to support automated retrieval and deployment of computational models from GitHub repositories. Once the R code is available in the GitHub repo, the contained process can be easily deployed and executed by simply defining the GitHub repository URL in the WPS admin tool. We  illustrate  the  usage  of  the  approach  by  sharing  and  running  a  model  for  land  use  system  archetypes  developed by the Helmholtz Centre for Environmental Research (UFZ, see Vaclavik et al.). The original R code was extended and published in the 52°North WPS using both, public and non-public datasets (Nüst et al., see also https://github.com/52North/glues-wps). Hosting the analysis in a Git repository now allows WPS administrators, client developers, and modelers to easily work together on new versions or completely new web processes using the powerful GitHub collaboration platform.
+
+References:
+Hinz, M. et. al. (2013): Spatial Statistics on the Geospatial Web. In: The 16th AGILE International Conference on Geographic Information Science, Short Papers. http://www.agile-online.org/Conference_Paper/CDs/agile_2013/Short_Papers/SP_S3.1_Hinz.pdf
+
+Nüst, D. et. al.: (2015): Open and reproducible global land use classification. In: EGU General Assembly Conference Abstracts. Vol 17. European Geophysical Union, 2015, p. 9125, http://meetingorganizer.copernicus.org/EGU2015/EGU2015- 9125.pdf
+
+Vaclavik, T., et. al. (2013): Mapping global land system archetypes. Global Environmental Change 23(6): 1637-1647. Online available: October 9, 2013, DOI: 10.1016/j.gloenvcha.2013.09.004},
+  Comment                  = {Slides: http://presentations.copernicus.org/EGU2016-6574_presentation.pdf},
+  Keywords                 = {abstract},
+  Owner                    = {Daniel},
+  Timestamp                = {2015.06.01},
+  Url                      = {http://meetingorganizer.copernicus.org/EGU2016/EGU2016-7396.pdf}
 }
 
 @Conference{Stasch2014,
