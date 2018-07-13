@@ -19,3 +19,8 @@ publications-software-teaching.synctex.gz
 *.out
 publications-daniel-nuest.pdf
 *.Rhistory
+
+*.fdb_latexmk
+
+*.fls
+publications-daniel-nuest.bcf

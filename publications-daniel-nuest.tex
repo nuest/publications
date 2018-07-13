@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage{ngerman}
-\usepackage[backend=bibtex, maxbibnames=99,sorting=ynt,defernumbers]{biblatex}
+\usepackage[backend=biber,maxbibnames=99,sorting=ynt,defernumbers]{biblatex}
 \usepackage{textcomp} % http://tex.stackexchange.com/questions/165115/getting-not-defining-perthousnad-and-not-defining-micro-when-compiling-beamer
 \usepackage{gensymb}
 \usepackage{hyperref}
@@ -16,47 +16,15 @@
 }
 \author{Daniel N\"ust}
 
-% http://de.comp.text.tex.narkive.com/LjGI9H6N/biblatex-bestimmten-autor-in-literaturverzeichnis-hervorheben
-% Namessignaturen erstellen; Argumente:
-% 1=Makro zum speichern der Signatur
-% 2=Nachname
-% 3=Vorname
-% 4=Präfix
-% 5=Suffix
-\newcommand*{\mknamesignature}[5]{\def#1{#2|#3|#4|#5}}
+\renewcommand*{\mkbibnamegiven}[1]{%
+\ifitemannotation{highlight}
+{\textbf{#1}}
+{#1}}
 
-% Prüfsignatur für den hervorzuhebenden Namen erstellen
-% und in \highlightname speichern
-\mknamesignature{\highlightname}{N{\"u}st}{Daniel}{}{}
-
-% NameFormat je nach style anpassen, siehe http://www.golatex.de/biblatex-style-numeric-bestimmten-autoren-hervorheben-t7802.html
-% style=numeric > "default"
-% style=authoryear > "sortname"
-\DeclareNameFormat{default}{%
-% Änderungen auf Gruppe = aktuellen Namen beschränken
-\begingroup
-% Prüfsignatur für aktuelle Namen erstellen und in
-% \currentsignature speichern
-\mknamesignature{\currentsignature}{#1}{#3}{#5}{#7}%
-% \currentsignature mit \highlightname vergleichen
-\ifdefequal{\highlightname}{\currentsignature}
-{\let\mkbibnamefirst=\textbf
-\let\mkbibnamelast=\textbf
-\let\mkbibnameprefix=\textbf
-\let\mkbibnameaffix=\textbf}
-{}%
-\ifnum\value{listcount}=1\relax
-\usebibmacro{name:last-first}{#1}{#3}{#5}{#7}%
-\ifblank{#3#5}
-{}
-{\usebibmacro{name:revsdelim}}%
-\else
-\usebibmacro{name:first-last}{#1}{#3}{#5}{#7}%
-\fi
-% Ende der Gruppe
-\endgroup
-\usebibmacro{name:andothers}}
-
+\renewcommand*{\mkbibnamefamily}[1]{%
+\ifitemannotation{highlight}
+{\textbf{#1}}
+{#1}}
 
 \makeatletter
 \let\defbibfilter@orig\defbibfilter
